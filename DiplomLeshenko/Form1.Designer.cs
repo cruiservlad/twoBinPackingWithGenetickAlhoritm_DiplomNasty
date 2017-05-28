@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.алгоритмToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.алгоритмыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.светлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.мутToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -44,20 +49,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -68,12 +77,14 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem});
+            this.файлToolStripMenuItem,
+            this.алгоритмToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1043, 24);
@@ -85,6 +96,36 @@
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // алгоритмToolStripMenuItem
+            // 
+            this.алгоритмToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.алгоритмыToolStripMenuItem});
+            this.алгоритмToolStripMenuItem.Name = "алгоритмToolStripMenuItem";
+            this.алгоритмToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.алгоритмToolStripMenuItem.Text = "Выполнение";
+            // 
+            // алгоритмыToolStripMenuItem
+            // 
+            this.алгоритмыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.светлToolStripMenuItem,
+            this.мутToolStripMenuItem});
+            this.алгоритмыToolStripMenuItem.Name = "алгоритмыToolStripMenuItem";
+            this.алгоритмыToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.алгоритмыToolStripMenuItem.Text = "Алгоритмы";
+            // 
+            // светлToolStripMenuItem
+            // 
+            this.светлToolStripMenuItem.Name = "светлToolStripMenuItem";
+            this.светлToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.светлToolStripMenuItem.Text = "Светл";
+            this.светлToolStripMenuItem.Click += new System.EventHandler(this.светлToolStripMenuItem_Click);
+            // 
+            // мутToolStripMenuItem
+            // 
+            this.мутToolStripMenuItem.Name = "мутToolStripMenuItem";
+            this.мутToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.мутToolStripMenuItem.Text = "Мут";
             // 
             // tabControl1
             // 
@@ -124,6 +165,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.tabControl2);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.groupBox2);
@@ -150,14 +192,14 @@
             this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Location = new System.Drawing.Point(332, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(427, 160);
+            this.groupBox4.Size = new System.Drawing.Size(427, 129);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Заполняем таблицу";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(239, 130);
+            this.button3.Location = new System.Drawing.Point(245, 68);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(182, 23);
             this.button3.TabIndex = 9;
@@ -167,7 +209,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(119, 132);
+            this.textBox6.Location = new System.Drawing.Point(108, 70);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(72, 20);
             this.textBox6.TabIndex = 8;
@@ -176,7 +218,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 135);
+            this.label8.Location = new System.Drawing.Point(0, 73);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(107, 13);
             this.label8.TabIndex = 7;
@@ -220,12 +262,11 @@
             // 
             // button2
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(317, 9);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 79);
+            this.button2.Size = new System.Drawing.Size(104, 53);
             this.button2.TabIndex = 0;
             this.button2.Text = "Добавить";
             this.button2.UseVisualStyleBackColor = true;
@@ -246,6 +287,25 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Другие настройки";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 40);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Площадь = 0";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(592, 13);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 162);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Установить";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // textBox2
             // 
@@ -300,6 +360,15 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Информация";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 45);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(66, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Площадь = ";
             // 
             // label2
             // 
@@ -371,33 +440,41 @@
             this.tabPage3.Text = "Дерево решений";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // tabControl2
             // 
-            this.button4.Location = new System.Drawing.Point(592, 13);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 162);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Установить";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Location = new System.Drawing.Point(332, 141);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(427, 149);
+            this.tabControl2.TabIndex = 6;
             // 
-            // label9
+            // tabPage4
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 40);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 13);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Площадь = 0";
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(419, 123);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // tabPage5
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 45);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 13);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Площадь = ";
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(419, 123);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -425,6 +502,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -462,6 +540,14 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripMenuItem алгоритмToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem алгоритмыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem светлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem мутToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

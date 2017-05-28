@@ -14,6 +14,9 @@ namespace DiplomLeshenko
     {
         Int16 colRows = 0;
         Int16 colCell = 3;
+
+        //int[,] massiveBlocks = new int[3, 2] { {0,1,2 }, {0,1,1 }, { 2,3,4} };
+
         public Form1()
         {
             InitializeComponent();
@@ -79,18 +82,94 @@ namespace DiplomLeshenko
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Draw(50, 50);
+            tabControl1.SelectedIndex = 0;
+            Random ran = new Random();
+            for(int i = 0; i < 500; i++)
+            {
+                textBox5.Text = ran.Next(5, 50).ToString();
+                textBox3.Text = ran.Next(5, 50).ToString();
+                addBlock();
+            }
+            //Draw(50, 50);
+            drawBlocks();
         }
 
-        public void Draw(int width, int height)
+        public void Draw(Bitmap bmp, int width, int height, int x, int y)
         {
-            Bitmap bmp;
-            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            /*Bitmap bmp;
+            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);*/
+            Random ran = new Random();
             pictureBox1.Image = bmp;
             Graphics g = Graphics.FromImage(pictureBox1.Image);
-            Rectangle rect = new Rectangle(20, 20, width, height);
-            g.DrawRectangle(new Pen(Color.Red, .5f), rect);
-            g.FillRectangle(Brushes.Red, new Rectangle(20, 20, width, height));
+            Rectangle rect = new Rectangle(x, y, width, height);
+            g.DrawRectangle(new Pen(Color.Black, 2), rect);
+            g.FillRectangle(Brushes.OrangeRed, new Rectangle(x, y, width, height));
+            //Thread.Sleep(1);
+        }
+
+        private void drawBlocks()
+        {
+            /*
+             * colRows - кол-во элементов        
+            */
+            Bitmap bmp;
+            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
+            int maxWidth = 0;//максимальная ширина блока в столбце
+            int summWidth = 0;//общая занятая ширина в контейнере
+            int summHeight = 0;//общая занятая длина в столбце
+            int[,] mass = new int[500, 2];//входной массив элементов
+            Random ran = new Random();
+            for (int i = 0; i < 500; i++)
+            {
+                mass[i, 0] = i;
+                mass[i, 1] = ran.Next(0,1);
+            }
+
+            int posOrientationW = 0; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
+            int posOrientationH = 1; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
+
+            int x = 0, y = 0;
+
+           for (int i = 0; i < colRows; i++)
+            {
+                //System.Threading.Thread.Sleep(10);
+                if (mass[i,1] == 1)
+                {
+                    posOrientationH = 0;
+                    posOrientationW = 1;
+                }
+                else
+                {
+                    posOrientationH = 1;
+                    posOrientationW = 0;
+                }
+
+                if((y + Convert.ToInt16(dataGridView1.Rows[mass[i,0]].Cells[posOrientationH].Value)) > pictureBox1.Size.Height)//если места нет, то надо передвинуть на следующий столбец
+                {
+                    x += maxWidth;
+                    summHeight = 0;
+                    y = 0;
+                    maxWidth = 0;
+                }
+
+                if((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
+                {
+                    MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину");
+                    continue;
+                }
+
+                Draw(bmp, Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value), Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value), x+2, y+2);
+
+                //MessageBox.Show("Отрисовали элемент - "+mass[i, 0]);
+
+                if (Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value) > maxWidth) maxWidth = Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
+
+                y += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
+
+                summHeight += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
+                summWidth += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
+            }
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
@@ -169,7 +248,7 @@ namespace DiplomLeshenko
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Вы нажали на Column"+e.ColumnIndex+" Row"+e.RowIndex);
+            //MessageBox.Show("Вы нажали на Column"+e.ColumnIndex+" Row"+e.RowIndex);
         }
 
         private void textBox3_KeyDown(object sender, KeyEventArgs e)
@@ -209,6 +288,79 @@ namespace DiplomLeshenko
             {
                 addBlock();
             }
+        }
+
+        private void светлToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Random ran = new Random();
+            for (int i = 0; i < 500; i++)
+            {
+                textBox5.Text = ran.Next(5, 50).ToString();
+                textBox3.Text = ran.Next(5, 50).ToString();
+                addBlock();
+            }
+            //Draw(50, 50);
+            drawBlocks();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e) //будем вызывать для задержанной отрисовки
+        {
+            int i = 0;
+            Bitmap bmp;
+            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
+            int maxWidth = 0;//максимальная ширина блока в столбце
+            int summWidth = 0;//общая занятая ширина в контейнере
+            int summHeight = 0;//общая занятая длина в столбце
+            int[,] mass = new int[500, 2];//входной массив элементов
+            Random ran = new Random();
+            for (int l = 0; l < 500; l++)
+            {
+                mass[l, 0] = l;
+                mass[l, 1] = ran.Next(0, 1);
+            }
+
+            int posOrientationW = 0; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
+            int posOrientationH = 1; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
+
+            int x = 0, y = 0;
+
+                 if (mass[i,1] == 1)
+                 {
+                     posOrientationH = 0;
+                     posOrientationW = 1;
+                 }
+                 else
+                 {
+                     posOrientationH = 1;
+                     posOrientationW = 0;
+                 }
+
+                 if((y + Convert.ToInt16(dataGridView1.Rows[mass[i,0]].Cells[posOrientationH].Value)) > pictureBox1.Size.Height)//если места нет, то надо передвинуть на следующий столбец
+                 {
+                     x += maxWidth;
+                     summHeight = 0;
+                     y = 0;
+                     maxWidth = 0;
+                 }
+
+                 if((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
+                 {
+                     MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину");
+                 }
+
+                 Draw(bmp, Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value), Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value), x, y);
+
+                 //MessageBox.Show("Отрисовали элемент - "+mass[i, 0]);
+
+                 if (Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value) > maxWidth) maxWidth = Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
+
+                 y += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
+
+                 summHeight += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
+                 summWidth += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
+            i++;
+            if (i > colRows) timer1.Enabled = false;
         }
     }
 }
