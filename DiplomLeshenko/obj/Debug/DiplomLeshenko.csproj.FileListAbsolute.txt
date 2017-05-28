@@ -1,0 +1,9 @@
+c:\users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\bin\Debug\DiplomLeshenko.exe.config
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\bin\Debug\DiplomLeshenko.exe
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\bin\Debug\DiplomLeshenko.pdb
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Debug\DiplomLeshenko.csprojResolveAssemblyReference.cache
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Debug\DiplomLeshenko.Form1.resources
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Debug\DiplomLeshenko.Properties.Resources.resources
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Debug\DiplomLeshenko.csproj.GenerateResource.Cache
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Debug\DiplomLeshenko.exe
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Debug\DiplomLeshenko.pdb
