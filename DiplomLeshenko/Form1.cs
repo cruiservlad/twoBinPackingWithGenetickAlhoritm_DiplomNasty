@@ -184,19 +184,23 @@ namespace DiplomLeshenko
         {
             if (textBox3.Text != "" && textBox5.Text != "")
             {
+                dataGridView1.Rows.Add();
+                int widthBlock = Convert.ToInt32(textBox3.Text);
+                int hightBlock = Convert.ToInt32(textBox5.Text);
+                dataGridView1.Rows[colRows].HeaderCell.Value = ".!.";
+                dataGridView1.Rows[colRows].Cells[0].Value = widthBlock;
+                dataGridView1.Rows[colRows].Cells[1].Value = hightBlock;
+                dataGridView1.Rows[colRows].Cells[2].Value = widthBlock * hightBlock;
 
+                colRows++;
+                label1.Text = "Количество элементов - " + colRows;
             }
-            //else MessageBox.Show();
-            /*dataGridView1.Rows.Add();
-            int widthBlock = Convert.ToInt32(textBox3.Text);
-            int hightBlock = Convert.ToInt32(textBox5.Text);
-            dataGridView1.Rows[colRows].HeaderCell.Value = ".!.";
-            dataGridView1.Rows[colRows].Cells[0].Value = widthBlock;
-            dataGridView1.Rows[colRows].Cells[1].Value = hightBlock;
-            dataGridView1.Rows[colRows].Cells[2].Value = widthBlock * hightBlock;
-
-            colRows++;
-            label1.Text = "Количество элементов - " + colRows;*/
+            else
+            {
+                MessageBox.Show("Какое - то из полей заполнено неверно или вовсе не заполнено!", "Поле ввода не заполнено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (textBox3.Text == "") textBox3.Focus();
+                if (textBox5.Text == "") textBox5.Focus();
+            }
         }
 
         private void textBox5_KeyDown(object sender, KeyEventArgs e)
