@@ -63,11 +63,6 @@ namespace DiplomLeshenko
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            dataGridView1.RowCount = Convert.ToInt16(textBox6.Text.ToString());
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             //pictureBox1.Width = Convert.ToInt32(textBox1.Text);
@@ -155,7 +150,7 @@ namespace DiplomLeshenko
 
                 if((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
                 {
-                    MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину");
+                    MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину формы");
                     continue;
                 }
 
@@ -189,14 +184,6 @@ namespace DiplomLeshenko
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
             {
