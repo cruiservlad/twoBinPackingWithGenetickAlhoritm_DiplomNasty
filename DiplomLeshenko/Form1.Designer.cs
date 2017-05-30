@@ -72,6 +72,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.светлячкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.окнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -106,7 +108,8 @@
             // алгоритмToolStripMenuItem
             // 
             this.алгоритмToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.алгоритмыToolStripMenuItem});
+            this.алгоритмыToolStripMenuItem,
+            this.окнаToolStripMenuItem});
             this.алгоритмToolStripMenuItem.Name = "алгоритмToolStripMenuItem";
             this.алгоритмToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.алгоритмToolStripMenuItem.Text = "Выполнение";
@@ -260,7 +263,7 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Location = new System.Drawing.Point(332, 82);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(427, 68);
+            this.groupBox3.Size = new System.Drawing.Size(427, 53);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Другие настройки";
@@ -268,7 +271,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 40);
+            this.label9.Location = new System.Drawing.Point(225, 16);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 5;
@@ -280,7 +283,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.Location = new System.Drawing.Point(317, 13);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(104, 49);
+            this.button4.Size = new System.Drawing.Size(104, 34);
             this.button4.TabIndex = 4;
             this.button4.Text = "Установить";
             this.button4.UseVisualStyleBackColor = true;
@@ -288,7 +291,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(197, 13);
+            this.textBox2.Location = new System.Drawing.Point(187, 13);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(32, 20);
             this.textBox2.TabIndex = 3;
@@ -300,7 +303,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(179, 16);
+            this.label4.Location = new System.Drawing.Point(175, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(12, 13);
             this.label4.TabIndex = 2;
@@ -544,6 +547,21 @@
             this.светлячкиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.светлячкиToolStripMenuItem.Text = "Светлячки";
             // 
+            // окнаToolStripMenuItem
+            // 
+            this.окнаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem});
+            this.окнаToolStripMenuItem.Name = "окнаToolStripMenuItem";
+            this.окнаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.окнаToolStripMenuItem.Text = "Окна";
+            // 
+            // рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem
+            // 
+            this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem.Name = "рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem";
+            this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem.Size = new System.Drawing.Size(397, 22);
+            this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem.Text = "Рстянуть окно отображение по размеру доступной оласти";
+            this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem.Click += new System.EventHandler(this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,6 +643,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ToolStripMenuItem светлячкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem окнаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem;
     }
 }
 

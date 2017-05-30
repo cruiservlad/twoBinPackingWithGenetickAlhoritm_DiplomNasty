@@ -87,6 +87,8 @@ namespace DiplomLeshenko
             }
             //Draw(50, 50);
             drawBlocks();*/
+            colRows = 0;
+            dataGridView1.Rows.Clear();
             int[,] generateBlocks_values = new int[5,1];//0{кол-во элементов}, 1{минимальная ширина}, 2{максимальная ширина}, 3{минимальная высота}, 4{максимальная высота}
             if(Convert.ToInt32(this.textBox4.Text) <= 0)//если кол-во блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
@@ -113,14 +115,23 @@ namespace DiplomLeshenko
                 generateBlocks_values[4, 0] = 50;
             }
 
-            tabControl1.SelectedIndex = 0;
+            //tabControl1.SelectedIndex = 0;
             Random ran = new Random();
+            button1.Enabled = false;
+            button2.Enabled = false;
+            textBox3.Enabled = false;
+            textBox5.Enabled = false;
             for (int i = 0; i < generateBlocks_values[0, 0]; i++)
             {
                 textBox5.Text = ran.Next(generateBlocks_values[3, 0], generateBlocks_values[4, 0]).ToString();
                 textBox3.Text = ran.Next(generateBlocks_values[1, 0], generateBlocks_values[2, 0]).ToString();
+                //System.Threading.Thread.Sleep(10);
                 addBlock();
             }
+            button1.Enabled = true;
+            button2.Enabled = true;
+            textBox3.Enabled = true;
+            textBox5.Enabled = true;
             drawBlocks();
 
 
@@ -187,7 +198,7 @@ namespace DiplomLeshenko
 
                 if((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
                 {
-                    MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину формы");
+                    //MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину формы");
                     continue;
                 }
 
@@ -251,7 +262,7 @@ namespace DiplomLeshenko
 
         private void changeTextInPreSetArea()
         {
-            label9.Text = "Площадь = "+calculateAreaInputForm();
+            label9.Text = "S = "+calculateAreaInputForm();
         }
 
         private void pictureBox1_SizeChanged(object sender, EventArgs e)
@@ -341,6 +352,14 @@ namespace DiplomLeshenko
             {
                 e.Handled = true;
             }
+        }
+
+        private void рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = (tabControl1.Size.Height - 40).ToString();
+            textBox2.Text = (tabControl1.Size.Width - 40).ToString();
+            pictureBox1.Height = Convert.ToInt32(textBox1.Text);
+            pictureBox1.Width = Convert.ToInt32(textBox2.Text);
         }
     }
 }
