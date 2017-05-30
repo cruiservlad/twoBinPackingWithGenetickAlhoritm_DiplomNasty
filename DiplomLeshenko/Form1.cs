@@ -87,7 +87,7 @@ namespace DiplomLeshenko
             }
             //Draw(50, 50);
             drawBlocks();*/
-            int[,] generateBlocks_values = new int[5,1];//0{кол-во элементов}, 1{минимальная ширина}, 2{максимальная ширина}, 3{минимальная длина}, 4{максимальная длина}
+            int[,] generateBlocks_values = new int[5,1];//0{кол-во элементов}, 1{минимальная ширина}, 2{максимальная ширина}, 3{минимальная высота}, 4{максимальная высота}
             if(Convert.ToInt32(this.textBox4.Text) <= 0)//если кол-во блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
                 generateBlocks_values[0, 0] = 500;
@@ -100,18 +100,29 @@ namespace DiplomLeshenko
 
             if (Convert.ToInt32(this.textBox7.Text) <= 0)//если максимальная ширина блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
-                generateBlocks_values[2, 0] = 200;
+                generateBlocks_values[2, 0] = 50;
             }
 
-            if (Convert.ToInt32(this.textBox9.Text) <= 0)//если минимаьная длина блоков в автогенерации меньше или равно 0 используем значение по дефолту
+            if (Convert.ToInt32(this.textBox9.Text) <= 0)//если минимаьная высота блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
-                generateBlocks_values[1, 0] = 5;
+                generateBlocks_values[3, 0] = 5;
             }
 
-            if (Convert.ToInt32(this.textBox8.Text) <= 0)//если максимальная длина блоков в автогенерации меньше или равно 0 используем значение по дефолту
+            if (Convert.ToInt32(this.textBox8.Text) <= 0)//если максимальная высота блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
-                generateBlocks_values[2, 0] = 200;
+                generateBlocks_values[4, 0] = 50;
             }
+
+            tabControl1.SelectedIndex = 0;
+            Random ran = new Random();
+            for (int i = 0; i < generateBlocks_values[0, 0]; i++)
+            {
+                textBox5.Text = ran.Next(generateBlocks_values[3, 0], generateBlocks_values[4, 0]).ToString();
+                textBox3.Text = ran.Next(generateBlocks_values[1, 0], generateBlocks_values[2, 0]).ToString();
+                addBlock();
+            }
+            drawBlocks();
+
 
         }
 

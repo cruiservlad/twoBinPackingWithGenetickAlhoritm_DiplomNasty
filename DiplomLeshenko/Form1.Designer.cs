@@ -505,9 +505,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(6, 94);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(117, 13);
+            this.label12.Size = new System.Drawing.Size(124, 13);
             this.label12.TabIndex = 6;
-            this.label12.Text = "Максимальная длина";
+            this.label12.Text = "Максимальная высота";
             // 
             // textBox9
             // 
@@ -523,9 +523,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(6, 68);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(111, 13);
+            this.label13.Size = new System.Drawing.Size(118, 13);
             this.label13.TabIndex = 4;
-            this.label13.Text = "Минимальная длина";
+            this.label13.Text = "Минимальная высота";
             // 
             // treeView1
             // 
