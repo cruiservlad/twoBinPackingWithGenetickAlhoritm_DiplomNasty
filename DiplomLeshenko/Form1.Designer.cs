@@ -71,6 +71,7 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.светлячкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -116,21 +117,23 @@
             this.светлToolStripMenuItem,
             this.мутToolStripMenuItem});
             this.алгоритмыToolStripMenuItem.Name = "алгоритмыToolStripMenuItem";
-            this.алгоритмыToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.алгоритмыToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.алгоритмыToolStripMenuItem.Text = "Алгоритмы";
             // 
             // светлToolStripMenuItem
             // 
+            this.светлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.светлячкиToolStripMenuItem});
             this.светлToolStripMenuItem.Name = "светлToolStripMenuItem";
-            this.светлToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.светлToolStripMenuItem.Text = "Светл";
+            this.светлToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.светлToolStripMenuItem.Text = "Бионспирированный";
             this.светлToolStripMenuItem.Click += new System.EventHandler(this.светлToolStripMenuItem_Click);
             // 
             // мутToolStripMenuItem
             // 
             this.мутToolStripMenuItem.Name = "мутToolStripMenuItem";
-            this.мутToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.мутToolStripMenuItem.Text = "Мут";
+            this.мутToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.мутToolStripMenuItem.Text = "Генетический";
             // 
             // tabControl1
             // 
@@ -535,6 +538,12 @@
             this.treeView1.Size = new System.Drawing.Size(1011, 483);
             this.treeView1.TabIndex = 0;
             // 
+            // светлячкиToolStripMenuItem
+            // 
+            this.светлячкиToolStripMenuItem.Name = "светлячкиToolStripMenuItem";
+            this.светлячкиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.светлячкиToolStripMenuItem.Text = "Светлячки";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -615,6 +624,7 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ToolStripMenuItem светлячкиToolStripMenuItem;
     }
 }
 
