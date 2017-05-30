@@ -77,7 +77,7 @@ namespace DiplomLeshenko
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 0;
+            /*tabControl1.SelectedIndex = 0;
             Random ran = new Random();
             for(int i = 0; i < 500; i++)
             {
@@ -86,7 +86,33 @@ namespace DiplomLeshenko
                 addBlock();
             }
             //Draw(50, 50);
-            drawBlocks();
+            drawBlocks();*/
+            int[,] generateBlocks_values = new int[5,1];//0{кол-во элементов}, 1{минимальная ширина}, 2{максимальная ширина}, 3{минимальная длина}, 4{максимальная длина}
+            if(Convert.ToInt32(this.textBox4.Text) <= 0)//если кол-во блоков в автогенерации меньше или равно 0 используем значение по дефолту
+            {
+                generateBlocks_values[0, 0] = 500;
+            }
+
+            if (Convert.ToInt32(this.textBox6.Text) <= 0)//если минимаьная ширина блоков в автогенерации меньше или равно 0 используем значение по дефолту
+            {
+                generateBlocks_values[1, 0] = 5;
+            }
+
+            if (Convert.ToInt32(this.textBox7.Text) <= 0)//если максимальная ширина блоков в автогенерации меньше или равно 0 используем значение по дефолту
+            {
+                generateBlocks_values[2, 0] = 200;
+            }
+
+            if (Convert.ToInt32(this.textBox9.Text) <= 0)//если минимаьная длина блоков в автогенерации меньше или равно 0 используем значение по дефолту
+            {
+                generateBlocks_values[1, 0] = 5;
+            }
+
+            if (Convert.ToInt32(this.textBox8.Text) <= 0)//если максимальная длина блоков в автогенерации меньше или равно 0 используем значение по дефолту
+            {
+                generateBlocks_values[2, 0] = 200;
+            }
+
         }
 
         public void Draw(Bitmap bmp, int width, int height, int x, int y)
@@ -290,64 +316,20 @@ namespace DiplomLeshenko
             drawBlocks();
         }
 
-        private void timer1_Tick(object sender, EventArgs e) //будем вызывать для задержанной отрисовки
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int i = 0;
-            Bitmap bmp;
-            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-
-            int maxWidth = 0;//максимальная ширина блока в столбце
-            int summWidth = 0;//общая занятая ширина в контейнере
-            int summHeight = 0;//общая занятая длина в столбце
-            int[,] mass = new int[500, 2];//входной массив элементов
-            Random ran = new Random();
-            for (int l = 0; l < 500; l++)
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
             {
-                mass[l, 0] = l;
-                mass[l, 1] = ran.Next(0, 1);
+                e.Handled = true;
             }
+        }
 
-            int posOrientationW = 0; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
-            int posOrientationH = 1; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
-
-            int x = 0, y = 0;
-
-                 if (mass[i,1] == 1)
-                 {
-                     posOrientationH = 0;
-                     posOrientationW = 1;
-                 }
-                 else
-                 {
-                     posOrientationH = 1;
-                     posOrientationW = 0;
-                 }
-
-                 if((y + Convert.ToInt16(dataGridView1.Rows[mass[i,0]].Cells[posOrientationH].Value)) > pictureBox1.Size.Height)//если места нет, то надо передвинуть на следующий столбец
-                 {
-                     x += maxWidth;
-                     summHeight = 0;
-                     y = 0;
-                     maxWidth = 0;
-                 }
-
-                 if((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
-                 {
-                     MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину");
-                 }
-
-                 Draw(bmp, Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value), Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value), x, y);
-
-                 //MessageBox.Show("Отрисовали элемент - "+mass[i, 0]);
-
-                 if (Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value) > maxWidth) maxWidth = Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
-
-                 y += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
-
-                 summHeight += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
-                 summWidth += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
-            i++;
-            if (i > colRows) timer1.Enabled = false;
+        private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
