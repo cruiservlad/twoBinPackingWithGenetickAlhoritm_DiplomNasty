@@ -88,6 +88,7 @@ namespace DiplomLeshenko
             //Draw(50, 50);
             drawBlocks();*/
             colRows = 0;
+            label1.Text = "Количество элементов - "+colRows;
             dataGridView1.Rows.Clear();
             int[,] generateBlocks_values = new int[5,1];//0{кол-во элементов}, 1{минимальная ширина}, 2{максимальная ширина}, 3{минимальная высота}, 4{максимальная высота}
             if(Convert.ToInt32(this.textBox4.Text) <= 0)//если кол-во блоков в автогенерации меньше или равно 0 используем значение по дефолту
@@ -132,7 +133,7 @@ namespace DiplomLeshenko
             button2.Enabled = true;
             textBox3.Enabled = true;
             textBox5.Enabled = true;
-            drawBlocks();
+            //drawBlocks();
 
 
         }
@@ -356,10 +357,28 @@ namespace DiplomLeshenko
 
         private void рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Text = (tabControl1.Size.Height - 40).ToString();
-            textBox2.Text = (tabControl1.Size.Width - 40).ToString();
+            textBox1.Text = (tabControl1.Size.Height - 35).ToString();
+            textBox2.Text = (tabControl1.Size.Width - 20).ToString();
             pictureBox1.Height = Convert.ToInt32(textBox1.Text);
             pictureBox1.Width = Convert.ToInt32(textBox2.Text);
+        }
+
+        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void мутToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.genetickAlhorihm();
+        }
+
+        private void genetickAlhorihm()
+        {
+
         }
     }
 }
