@@ -41,7 +41,10 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -79,9 +82,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -139,13 +139,13 @@
             this.светлToolStripMenuItem.Name = "светлToolStripMenuItem";
             this.светлToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.светлToolStripMenuItem.Text = "Бионспирированный";
-            this.светлToolStripMenuItem.Click += new System.EventHandler(this.светлToolStripMenuItem_Click);
             // 
             // светлячкиToolStripMenuItem
             // 
             this.светлячкиToolStripMenuItem.Name = "светлячкиToolStripMenuItem";
-            this.светлячкиToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.светлячкиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.светлячкиToolStripMenuItem.Text = "Светлячки";
+            this.светлячкиToolStripMenuItem.Click += new System.EventHandler(this.светлячкиToolStripMenuItem_Click);
             // 
             // мутToolStripMenuItem
             // 
@@ -222,6 +222,15 @@
             this.tabPage2.Text = "Настройка алгоритма";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Location = new System.Drawing.Point(332, 283);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(673, 194);
+            this.groupBox7.TabIndex = 7;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Настройка операторов";
+            // 
             // groupBox6
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -237,6 +246,23 @@
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Настройка алгоритмов";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(128, 67);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(100, 20);
+            this.textBox12.TabIndex = 5;
+            this.textBox12.Text = "0";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 68);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(102, 13);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "Размер популяции";
             // 
             // textBox11
             // 
@@ -620,37 +646,13 @@
             // 
             // treeView1
             // 
+            this.treeView1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(1011, 483);
             this.treeView1.TabIndex = 0;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(128, 67);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(100, 20);
-            this.textBox12.TabIndex = 5;
-            this.textBox12.Text = "0";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 68);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(102, 13);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "Размер популяции";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Location = new System.Drawing.Point(332, 283);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(673, 194);
-            this.groupBox7.TabIndex = 7;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Настройка операторов";
             // 
             // Form1
             // 

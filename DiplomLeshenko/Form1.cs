@@ -140,6 +140,8 @@ namespace DiplomLeshenko
 
         public void Draw(Bitmap bmp, int width, int height, int x, int y)
         {
+            DateTime localDate = DateTime.Now;
+            //MessageBox.Show("Draw");
             /*Bitmap bmp;
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);*/
             Random ran = new Random();
@@ -147,73 +149,27 @@ namespace DiplomLeshenko
             Graphics g = Graphics.FromImage(pictureBox1.Image);
             Rectangle rect = new Rectangle(x, y, width, height);
             g.DrawRectangle(new Pen(Color.Black, 2), rect);
-            g.FillRectangle(Brushes.OrangeRed, new Rectangle(x, y, width, height));
+            Brush[] b = new[] { Color.AliceBlue, Color.AntiqueWhite, Color.Aqua, Color.Aquamarine, Color.Azure, Color.Beige, Color.Bisque, Color.BlanchedAlmond, Color.Blue, Color.BlueViolet, Color.Brown, Color.BurlyWood, Color.CadetBlue, Color.Chartreuse, Color.Chocolate, Color.Coral, Color.CornflowerBlue, Color.Cornsilk,Color.Crimson,Color.Cyan,
+            Color.DarkBlue,Color.DarkCyan}.Select(c => new SolidBrush(c)).ToArray();//21
+            //b[1] = Color.FromArgb(255,255,255,255);
+
+            DateTime localDate2 = DateTime.Now;
+            /*while ((localDate2.Second - localDate.Second) < 1)
+            {
+                localDate2 = DateTime.Now;
+            }*/
+            //MessageBox.Show("After timer");
+            System.Console.WriteLine("After timer");
+            g.FillRectangle(b[ran.Next(0, b.Length)], new Rectangle(x, y, width, height));
+            //System.Threading.Thread.Sleep(10);
+            //MessageBox.Show(b.Length.ToString());
+            //g.FillRectangle(Brushes.YellowGreen, new Rectangle(x, y, width, height));
+            //g.FillRectangle();
             //Thread.Sleep(1);
-        }
 
-        private void drawBlocks()
-        {
-            /*
-             * colRows - кол-во элементов        
-            */
-            Bitmap bmp;
-            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
-            int maxWidth = 0;//максимальная ширина блока в столбце
-            int summWidth = 0;//общая занятая ширина в контейнере
-            int summHeight = 0;//общая занятая длина в столбце
-            int[,] mass = new int[500, 2];//входной массив элементов
-            Random ran = new Random();
-            for (int i = 0; i < 500; i++)
-            {
-                mass[i, 0] = i;
-                mass[i, 1] = ran.Next(0,1);
-            }
 
-            int posOrientationW = 0; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
-            int posOrientationH = 1; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
-
-            int x = 0, y = 0;
-
-           for (int i = 0; i < colRows; i++)
-            {
-                //System.Threading.Thread.Sleep(10);
-                if (mass[i,1] == 1)
-                {
-                    posOrientationH = 0;
-                    posOrientationW = 1;
-                }
-                else
-                {
-                    posOrientationH = 1;
-                    posOrientationW = 0;
-                }
-
-                if((y + Convert.ToInt16(dataGridView1.Rows[mass[i,0]].Cells[posOrientationH].Value)) > pictureBox1.Size.Height)//если места нет, то надо передвинуть на следующий столбец
-                {
-                    x += maxWidth;
-                    summHeight = 0;
-                    y = 0;
-                    maxWidth = 0;
-                }
-
-                if((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
-                {
-                    //MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину формы");
-                    continue;
-                }
-
-                Draw(bmp, Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value), Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value), x+2, y+2);
-
-                //MessageBox.Show("Отрисовали элемент - "+mass[i, 0]);
-
-                if (Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value) > maxWidth) maxWidth = Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
-
-                y += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
-
-                summHeight += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
-                summWidth += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
-            }
+            
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
@@ -328,15 +284,6 @@ namespace DiplomLeshenko
 
         private void светлToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Random ran = new Random();
-            for (int i = 0; i < 500; i++)
-            {
-                textBox5.Text = ran.Next(5, 50).ToString();
-                textBox3.Text = ran.Next(5, 50).ToString();
-                addBlock();
-            }
-            //Draw(50, 50);
-            drawBlocks();
         }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
@@ -378,7 +325,103 @@ namespace DiplomLeshenko
 
         private void genetickAlhorihm()
         {
+            int[,] mass = new int[500,2];
+            Random ran = new Random();
+            for (int i = 0; i <500; i++)
+            {
+                mass[i, 0] = i;
+                mass[i, 1] = ran.Next(0, 1);
+            }
+            drawBlocks(mass);
+        }
 
+        private void drawBlocks(int[,] mass)
+        {
+            /*
+             * colRows - кол-во элементов        
+            */
+            Bitmap bmp;
+            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
+            int maxWidth = 0;//максимальная ширина блока в столбце
+            int summWidth = 0;//общая занятая ширина в контейнере
+            int summHeight = 0;//общая занятая длина в столбце
+            //int[,] mass = new int[500, 2];//входной массив элементов
+            Random ran = new Random();
+            /*for (int i = 0; i < mass.Length; i++)
+            {
+                mass[i, 0] = i;
+                mass[i, 1] = ran.Next(0, 1);
+            }*/
+
+            int posOrientationW = 0; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
+            int posOrientationH = 1; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
+
+            int x = 0, y = 0;
+
+            for (int i = 0; i < colRows; i++)
+            {
+                //System.Threading.Thread.Sleep(10);
+                if (mass[i, 1] == 1)
+                {
+                    posOrientationH = 0;
+                    posOrientationW = 1;
+                }
+                else
+                {
+                    posOrientationH = 1;
+                    posOrientationW = 0;
+                }
+
+                if ((y + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value)) > pictureBox1.Size.Height)//если места нет, то надо передвинуть на следующий столбец
+                {
+                    x += maxWidth;
+                    summHeight = 0;
+                    y = 0;
+                    maxWidth = 0;
+                }
+
+                if ((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
+                {
+                    //MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину формы");
+                    continue;
+                }
+
+                Draw(bmp, Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value), Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value), x + 2, y + 2);
+
+                //MessageBox.Show("Отрисовали элемент - "+mass[i, 0]);
+
+                if (Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value) > maxWidth) maxWidth = Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
+
+                y += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
+
+                summHeight += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
+                summWidth += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
+            }
+        }
+
+        private void светлячкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*DateTime localDate = DateTime.Now;
+            MessageBox.Show(localDate.Second.ToString());*/
+            for (int i = 0; i < 100; i++)
+            {
+                //DateTime localDate = DateTime.Now;
+                genetickAlhorihm();
+
+                //System.Threading.Thread.Sleep(10);
+                /*var item = new NotifyIcon();
+                item.Visible = true;
+                item.Icon = System.Drawing.SystemIcons.Information;
+                item.ShowBalloonTip(10, "Генерация отображения", "Операция - "+i, ToolTipIcon.Info);*/
+                MessageBox.Show("После отвисания");
+                /*DateTime localDate2 = DateTime.Now;
+                while ((localDate2.Second- localDate.Second) < 5)
+                {
+                    localDate2 = DateTime.Now;
+                }*/
+            }
+            //genetickAlhorihm();
         }
     }
 }
