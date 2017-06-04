@@ -315,6 +315,7 @@ namespace DiplomLeshenko
                 mass[i, 1] = ran.Next(0, 1);
             }
             drawBlocks(mass);*/
+            chart1.Series[0].Points.Clear();
             int coutOfIteration = Convert.ToInt16(textBox10.Text);
             int timeOfIteration = Convert.ToInt16(textBox11.Text);
             int coutOfConteyner = dataGridView1.RowCount - 1;
@@ -328,6 +329,7 @@ namespace DiplomLeshenko
                 TreeNode iterationTree = new TreeNode("Итерации");
                 int[,] mass = new int[coutOfConteyner, 2];
                 int notIncludedCont = 0;
+                DateTime timeStart = DateTime.Now;
                 for (int coutIter = 0; coutIter < coutOfIteration; coutIter++)
                 {
                     toolStripProgressBar1.Value++;
@@ -372,6 +374,11 @@ namespace DiplomLeshenko
 
                     //chart1.Series.Add.
                     chart1.Series[0].Points.AddXY(coutIter, cf);
+                    toolStripStatusLabel1.Text = "Итерация - "+coutIter;
+                    toolStripStatusLabel2.Text = "Алгоритм работает - " + (DateTime.Now - timeStart);
+
+                   // int razTime = (DateTime.Now.Second - timeStart);
+
                     await Task.Delay(1);
                     
                 }
