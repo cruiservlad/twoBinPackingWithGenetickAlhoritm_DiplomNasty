@@ -369,7 +369,9 @@ namespace DiplomLeshenko
                             massDouble = mass;
                             iterIsCool = coutIter;
                     }
-                    
+
+                    //chart1.Series.Add.
+                    chart1.Series[0].Points.AddXY(coutIter, cf);
                     await Task.Delay(1);
                     
                 }
@@ -386,7 +388,7 @@ namespace DiplomLeshenko
             item.Visible = true;
             item.Icon = System.Drawing.SystemIcons.Information;
             item.ShowBalloonTip(1000, "Работа алгоритма", "Работа алгоритма успешно завершена\nПройдя "+coutOfIteration+" итераций, программа нашла лучшее значение ЦФ = "+maxCF+" на "+iterIsCool+" итерации", ToolTipIcon.Info);
-            MessageBox.Show("Лучшая итерация - "+iterIsCool);
+            MessageBox.Show("Лучшая итерация - "+iterIsCool, "Работа алгоритма", MessageBoxButtons.OK, MessageBoxIcon.Information);
             toolStripProgressBar1.Value = 0;
 
         }
