@@ -385,16 +385,15 @@ namespace DiplomLeshenko
 
             if(timeOfIteration > 0)
             {
-                int secondStart = Convert.ToInt16(DateTime.Now.Second);
+                Int32 secondStart = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                 Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                toolStripProgressBar1.Maximum = timeOfIteration*60+100;
+                toolStripProgressBar1.Maximum = timeOfIteration*60+10;
                 toolStripProgressBar1.Value = 0;
                 TreeNode iterationTree = new TreeNode("Итерации");
                 int colIter = 0;
-                while ((Convert.ToInt16(DateTime.Now.Second)- secondStart) < (timeOfIteration*60))
+                while (((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - secondStart) < (timeOfIteration*60))
                 {
                     toolStripProgressBar1.Value = ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - unixTimestamp);
-                    toolStripStatusLabel3.Text = ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - unixTimestamp).ToString();
                     Random r = new Random((int)DateTime.Now.Ticks);
                     int max = coutOfConteyner;
                     int[] x = new int[max];
