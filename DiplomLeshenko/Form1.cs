@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -86,7 +83,7 @@ namespace DiplomLeshenko
 
             if (Convert.ToInt32(this.textBox6.Text) <= 0)//если минимаьная ширина блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
-                generateBlocks_values[1, 0] = 5;
+                generateBlocks_values[1, 0] = 25;
             }
             else generateBlocks_values[1, 0] = Convert.ToInt32(this.textBox6.Text);
 
@@ -98,7 +95,7 @@ namespace DiplomLeshenko
 
             if (Convert.ToInt32(this.textBox9.Text) <= 0)//если минимаьная высота блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
-                generateBlocks_values[3, 0] = 5;
+                generateBlocks_values[3, 0] = 25;
             }
             else generateBlocks_values[3, 0] = Convert.ToInt32(this.textBox9.Text);
 

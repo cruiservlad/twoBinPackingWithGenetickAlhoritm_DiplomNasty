@@ -1,0 +1,8 @@
+C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\bin\Release\ВКР - Лещенко А.Ю.exe.config
+C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\bin\Release\ВКР - Лещенко А.Ю.exe
+C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\bin\Release\ВКР - Лещенко А.Ю.pdb
+C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\DiplomLeshenko.Form1.resources
+C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\DiplomLeshenko.Properties.Resources.resources
+C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\DiplomLeshenko.csproj.GenerateResource.Cache
+C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\ВКР - Лещенко А.Ю.exe
+C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\ВКР - Лещенко А.Ю.pdb
