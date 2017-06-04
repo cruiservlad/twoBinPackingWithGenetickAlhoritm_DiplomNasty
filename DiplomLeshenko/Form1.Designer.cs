@@ -41,10 +41,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -84,6 +81,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -113,6 +111,8 @@
             // 
             // файлToolStripMenuItem
             // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.закрытьToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -132,7 +132,7 @@
             this.светлToolStripMenuItem,
             this.мутToolStripMenuItem});
             this.алгоритмыToolStripMenuItem.Name = "алгоритмыToolStripMenuItem";
-            this.алгоритмыToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.алгоритмыToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.алгоритмыToolStripMenuItem.Text = "Алгоритмы";
             // 
             // светлToolStripMenuItem
@@ -146,7 +146,7 @@
             // светлячкиToolStripMenuItem
             // 
             this.светлячкиToolStripMenuItem.Name = "светлячкиToolStripMenuItem";
-            this.светлячкиToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.светлячкиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.светлячкиToolStripMenuItem.Text = "Светлячки";
             this.светлячкиToolStripMenuItem.Click += new System.EventHandler(this.светлячкиToolStripMenuItem_Click);
             // 
@@ -162,7 +162,7 @@
             this.окнаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem});
             this.окнаToolStripMenuItem.Name = "окнаToolStripMenuItem";
-            this.окнаToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.окнаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.окнаToolStripMenuItem.Text = "Окна";
             // 
             // рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem
@@ -210,7 +210,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.groupBox7);
             this.tabPage2.Controls.Add(this.groupBox6);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
@@ -225,20 +224,9 @@
             this.tabPage2.Text = "Настройка алгоритма";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox7
-            // 
-            this.groupBox7.Location = new System.Drawing.Point(332, 283);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(673, 181);
-            this.groupBox7.TabIndex = 7;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Настройка операторов";
-            // 
             // groupBox6
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox6.Controls.Add(this.textBox12);
-            this.groupBox6.Controls.Add(this.label16);
             this.groupBox6.Controls.Add(this.textBox11);
             this.groupBox6.Controls.Add(this.label15);
             this.groupBox6.Controls.Add(this.textBox10);
@@ -249,23 +237,6 @@
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Настройка алгоритмов";
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(128, 67);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(100, 20);
-            this.textBox12.TabIndex = 5;
-            this.textBox12.Text = "0";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 68);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(102, 13);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "Размер популяции";
             // 
             // textBox11
             // 
@@ -674,6 +645,13 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
+            // закрытьToolStripMenuItem
+            // 
+            this.закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
+            this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.закрытьToolStripMenuItem.Text = "Закрыть";
+            this.закрытьToolStripMenuItem.Click += new System.EventHandler(this.закрытьToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -767,11 +745,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripMenuItem закрытьToolStripMenuItem;
     }
 }
 

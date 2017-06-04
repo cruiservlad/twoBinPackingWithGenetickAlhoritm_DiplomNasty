@@ -14,7 +14,6 @@ namespace DiplomLeshenko
     {
         Int16 colRows = 0;
         Int16 colCell = 3;
-        int allIteration = 0;
 
         //int[,] massiveBlocks = new int[3, 2] { {0,1,2 }, {0,1,1 }, { 2,3,4} };
 
@@ -33,13 +32,11 @@ namespace DiplomLeshenko
             pictureBox1.Width = 560;
             pictureBox1.Height = 376;
             generateStartBox();
-            //toolStripProgressBar1.Width = this.Size.Width;
         }
 
         private void generateStartBox()
         {
             dataGridView1.ColumnCount = colCell;
-            //dataGridView1.Cells[-1].HeaderCell.Value = "HI";
             dataGridView1.Columns[0].HeaderCell.Value = "Ширина";
             dataGridView1.Columns[1].HeaderCell.Value = "Высота";
             dataGridView1.Columns[2].HeaderCell.Value = "Площадь";
@@ -67,13 +64,11 @@ namespace DiplomLeshenko
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //pictureBox1.Width = Convert.ToInt32(textBox1.Text);
             this.changeTextInPreSetArea();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            //pictureBox1.Height = Convert.ToInt32(textBox2.Text);
             this.changeTextInPreSetArea();
         }
 
@@ -126,31 +121,25 @@ namespace DiplomLeshenko
 
             toolStripProgressBar1.Maximum = generateBlocks_values[0, 0];
             toolStripProgressBar1.Value = 0;
-            //MethodInvoker simpleDelegate = new MethodInvoker(addBlock);
             for (int i = 0; i < generateBlocks_values[0, 0]; i++)
             {
-                toolStripProgressBar1.Value++;
                 textBox5.Text = ran.Next(generateBlocks_values[3, 0], generateBlocks_values[4, 0]).ToString();
                 textBox3.Text = ran.Next(generateBlocks_values[1, 0], generateBlocks_values[2, 0]).ToString();
-                //System.Threading.Thread.Sleep(10);
                 addBlock();
-                //simpleDelegate.BeginInvoke(null, null);
+                toolStripProgressBar1.Value++;
                 await Task.Delay(1);
             }
             toolStripProgressBar1.Value = 0;
             groupBox4.Enabled = true;
             groupBox1.Enabled = true;
-            //drawBlocks();
-
-
+            var item = new NotifyIcon();
+            item.Visible = true;
+            item.Icon = System.Drawing.SystemIcons.Information;
+            item.ShowBalloonTip(1000, "Автоматическая генерация блоков", "Генерация успешно завершена\nСгенерировано - "+colRows+" блоков", ToolTipIcon.Info);
         }
 
         public void Draw(Bitmap bmp, int width, int height, int x, int y)
         {
-            DateTime localDate = DateTime.Now;
-            //MessageBox.Show("Draw");
-            /*Bitmap bmp;
-            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);*/
             Random ran = new Random((int)DateTime.Now.Ticks);
 
             pictureBox1.Image = bmp;
@@ -158,24 +147,10 @@ namespace DiplomLeshenko
             Rectangle rect = new Rectangle(x, y, width, height);
             g.DrawRectangle(new Pen(Color.Black, 2), rect);
             Brush[] b = new[] { Color.AliceBlue, Color.AntiqueWhite, Color.Aqua, Color.Aquamarine, Color.Azure, Color.Beige, Color.Bisque, Color.BlanchedAlmond, Color.Blue, Color.BlueViolet, Color.Brown, Color.BurlyWood, Color.CadetBlue, Color.Chartreuse, Color.Chocolate, Color.Coral, Color.CornflowerBlue, Color.Cornsilk,Color.Crimson,Color.Cyan,
-            Color.DarkBlue,Color.DarkCyan,Color.DarkGoldenrod,Color.DarkGray,Color.DarkGreen,Color.DarkKhaki,Color.DarkMagenta,Color.DarkOliveGreen,Color.DarkOrange}.Select(c => new SolidBrush(c)).ToArray();//21
-            //b[1] = Color.FromArgb(255,255,255,255);
+            Color.DarkBlue,Color.DarkCyan,Color.DarkGoldenrod,Color.DarkGray,Color.DarkGreen,Color.DarkKhaki,Color.DarkMagenta,Color.DarkOliveGreen,Color.DarkOrange}.Select(c => new SolidBrush(c)).ToArray();
 
             
             g.FillRectangle(b[ran.Next(0, b.Length)], new Rectangle(x, y, width, height));
-            //System.Threading.Thread.Sleep(10);
-            //g.FillRectangle(Brushes.YellowGreen, new Rectangle(x, y, width, height));
-            //g.FillRectangle();
-            //Thread.Sleep(1);
-            /*DateTime localDate2 = DateTime.Now;
-            while ((localDate2.Second - localDate.Second) < 1)
-            {
-                localDate2 = DateTime.Now;
-            }*/
-
-
-
-
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
@@ -332,7 +307,7 @@ namespace DiplomLeshenko
         private async void genetickAlhorihm()
         {
             //int[,] mass = new int[dataGridView1.RowCount - 1,2];
-            
+
             /*for (int i = 0; i < (dataGridView1.RowCount -1); i++)
             {
                 mass[i, 0] = i;
@@ -340,18 +315,17 @@ namespace DiplomLeshenko
                 mass[i, 1] = ran.Next(0, 1);
             }
             drawBlocks(mass);*/
-
             int coutOfIteration = Convert.ToInt16(textBox10.Text);
             int timeOfIteration = Convert.ToInt16(textBox11.Text);
             int coutOfConteyner = dataGridView1.RowCount - 1;
             int[,] massDouble = new int[coutOfConteyner, 2];
             int iterIsCool = 0;
+            double maxCF = 0;
             if (coutOfIteration > 0)
             {
                 toolStripProgressBar1.Maximum = coutOfIteration;
                 toolStripProgressBar1.Value = 0;
                 TreeNode iterationTree = new TreeNode("Итерации");
-                double maxCF = 0;
                 int[,] mass = new int[coutOfConteyner, 2];
                 int notIncludedCont = 0;
                 for (int coutIter = 0; coutIter < coutOfIteration; coutIter++)
@@ -408,12 +382,17 @@ namespace DiplomLeshenko
             }
 
             drawBlocks(massDouble);
+            var item = new NotifyIcon();
+            item.Visible = true;
+            item.Icon = System.Drawing.SystemIcons.Information;
+            item.ShowBalloonTip(1000, "Работа алгоритма", "Работа алгоритма успешно завершена\nПройдя "+coutOfIteration+" итераций, программа нашла лучшее значение ЦФ = "+maxCF+" на "+iterIsCool+" итерации", ToolTipIcon.Info);
             MessageBox.Show("Лучшая итерация - "+iterIsCool);
             toolStripProgressBar1.Value = 0;
+
         }
 
-            private int drawBlocks(int[,] mass)
-            {
+        private int drawBlocks(int[,] mass)
+        { 
                 /*
                  * colRows - кол-во элементов        
                 */
@@ -427,11 +406,6 @@ namespace DiplomLeshenko
             int summHeight = 0;//общая занятая длина в столбце
             //int[,] mass = new int[500, 2];//входной массив элементов
             Random ran = new Random((int)DateTime.Now.Ticks);
-            /*for (int i = 0; i < mass.Length; i++)
-            {
-                mass[i, 0] = i;
-                mass[i, 1] = ran.Next(0, 1);
-            }*/
 
             int posOrientationW = 0; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
             int posOrientationH = 1; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
@@ -439,7 +413,6 @@ namespace DiplomLeshenko
             int x = 0, y = 0;
             for (int i = 0; i < colRows; i++)
             {
-                //System.Threading.Thread.Sleep(10);
                 if (mass[i, 1] == 1)
                 {
                     posOrientationH = 0;
@@ -461,15 +434,11 @@ namespace DiplomLeshenko
 
                 if ((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
                 {
-                    //MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину формы");
                     notInclude++;
                     continue;
                 }
 
                 Draw(bmp, Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value), Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value), x + 2, y + 2);
-
-                //MessageBox.Show("Отрисовали элемент - "+mass[i, 0]);
-                //System.Console.WriteLine("Отрисовали элемент - "+mass[i,0]);
 
                 if (Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value) > maxWidth) maxWidth = Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
 
@@ -483,12 +452,6 @@ namespace DiplomLeshenko
 
         private void светлячкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //MethodInvoker simpleDelegate = new MethodInvoker(genetickAlhorihm);
-            /*for (int i = 0; i < 100; i++)
-            {
-                genetickAlhorihm();
-                //simpleDelegate.BeginInvoke(null, null);
-            }*/
             tabControl1.Enabled = false;
             genetickAlhorihm();
             tabControl1.Enabled = true;
@@ -512,9 +475,9 @@ namespace DiplomLeshenko
             textBox10.Text = "0";
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }
