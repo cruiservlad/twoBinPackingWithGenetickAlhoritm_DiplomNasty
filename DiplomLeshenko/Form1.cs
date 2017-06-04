@@ -489,7 +489,9 @@ namespace DiplomLeshenko
                 genetickAlhorihm();
                 //simpleDelegate.BeginInvoke(null, null);
             }*/
+            tabControl1.Enabled = false;
             genetickAlhorihm();
+            tabControl1.Enabled = true;
         }
 
         private void textBox10_KeyPress(object sender, KeyPressEventArgs e)
