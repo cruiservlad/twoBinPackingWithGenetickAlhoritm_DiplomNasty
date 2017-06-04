@@ -14,7 +14,7 @@ namespace DiplomLeshenko
     {
         Int16 colRows = 0;
         Int16 colCell = 3;
-
+        Random random = new Random();
         //int[,] massiveBlocks = new int[3, 2] { {0,1,2 }, {0,1,1 }, { 2,3,4} };
 
         public Form1()
@@ -140,17 +140,19 @@ namespace DiplomLeshenko
 
         public void Draw(Bitmap bmp, int width, int height, int x, int y)
         {
-            Random ran = new Random((int)DateTime.Now.Ticks);
+            
 
             pictureBox1.Image = bmp;
             Graphics g = Graphics.FromImage(pictureBox1.Image);
             Rectangle rect = new Rectangle(x, y, width, height);
             g.DrawRectangle(new Pen(Color.Black, 2), rect);
-            Brush[] b = new[] { Color.AliceBlue, Color.AntiqueWhite, Color.Aqua, Color.Aquamarine, Color.Azure, Color.Beige, Color.Bisque, Color.BlanchedAlmond, Color.Blue, Color.BlueViolet, Color.Brown, Color.BurlyWood, Color.CadetBlue, Color.Chartreuse, Color.Chocolate, Color.Coral, Color.CornflowerBlue, Color.Cornsilk,Color.Crimson,Color.Cyan,
-            Color.DarkBlue,Color.DarkCyan,Color.DarkGoldenrod,Color.DarkGray,Color.DarkGreen,Color.DarkKhaki,Color.DarkMagenta,Color.DarkOliveGreen,Color.DarkOrange}.Select(c => new SolidBrush(c)).ToArray();
+            /*Brush[] b = new[] { Color.AliceBlue, Color.AntiqueWhite, Color.Aqua, Color.Aquamarine, Color.Azure, Color.Beige, Color.Bisque, Color.BlanchedAlmond, Color.Blue, Color.BlueViolet, Color.Brown, Color.BurlyWood, Color.CadetBlue, Color.Chartreuse, Color.Chocolate, Color.Coral, Color.CornflowerBlue, Color.Cornsilk,Color.Crimson,Color.Cyan,
+            Color.DarkBlue,Color.DarkCyan,Color.DarkGoldenrod,Color.DarkGray,Color.DarkGreen,Color.DarkKhaki,Color.DarkMagenta,Color.DarkOliveGreen,Color.DarkOrange,
+            Color.DarkOrchid,Color.DarkRed,Color.DarkSalmon,Color.DarkSeaGreen}.Select(c => new SolidBrush(c)).ToArray();*/
+            Brush[] b = new[] { Color.FromArgb(random.Next(0,255), random.Next(0, 255), random.Next(0, 255)) }.Select(c => new SolidBrush(c)).ToArray();
 
-            
-            g.FillRectangle(b[ran.Next(0, b.Length)], new Rectangle(x, y, width, height));
+
+            g.FillRectangle(b[0], new Rectangle(x, y, width, height));
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
@@ -385,16 +387,15 @@ namespace DiplomLeshenko
 
             if(timeOfIteration > 0)
             {
-                int secondStart = Convert.ToInt16(DateTime.Now.Second);
+                Int32 secondStart = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                 Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                toolStripProgressBar1.Maximum = timeOfIteration*60;
+                toolStripProgressBar1.Maximum = timeOfIteration*60+10;
                 toolStripProgressBar1.Value = 0;
                 TreeNode iterationTree = new TreeNode("Итерации");
                 int colIter = 0;
-                while ((Convert.ToInt16(DateTime.Now.Second)- secondStart) < (timeOfIteration*60))
+                while (((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - secondStart) < (timeOfIteration*60))
                 {
                     toolStripProgressBar1.Value = ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - unixTimestamp);
-                    toolStripStatusLabel3.Text = ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - unixTimestamp).ToString();
                     Random r = new Random((int)DateTime.Now.Ticks);
                     int max = coutOfConteyner;
                     int[] x = new int[max];
@@ -441,6 +442,7 @@ namespace DiplomLeshenko
                     colIter++;
                     await Task.Delay(1);
                 }
+                treeView1.Nodes.Add(iterationTree);
             }
 
             drawBlocks(massDouble);
@@ -509,6 +511,8 @@ namespace DiplomLeshenko
                 summHeight += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
                 summWidth += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
             }
+            //MessageBox.Show("HUY");
+            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
             return notInclude;
         }
 
