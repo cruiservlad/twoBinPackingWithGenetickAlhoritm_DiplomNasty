@@ -263,10 +263,6 @@ namespace DiplomLeshenko
             }
         }
 
-        private void светлToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
@@ -316,8 +312,10 @@ namespace DiplomLeshenko
             }
             drawBlocks(mass);*/
             chart1.Series[0].Points.Clear();
-            int coutOfIteration = Convert.ToInt16(textBox10.Text);
-            int timeOfIteration = Convert.ToInt16(textBox11.Text);
+            int coutOfIteration = 0;
+            int timeOfIteration = 0;
+            if(textBox10.Text != "") coutOfIteration = Convert.ToInt16(textBox10.Text);
+            if (textBox11.Text != "") timeOfIteration = Convert.ToInt16(textBox11.Text);
             int coutOfConteyner = dataGridView1.RowCount - 1;
             int[,] massDouble = new int[coutOfConteyner, 2];
             int iterIsCool = 0;
