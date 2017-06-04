@@ -320,14 +320,14 @@ namespace DiplomLeshenko
             int[,] massDouble = new int[coutOfConteyner, 2];
             int iterIsCool = 0;
             double maxCF = 0;
+            DateTime timeStart = DateTime.Now;
+            int[,] mass = new int[coutOfConteyner, 2];
+            int notIncludedCont = 0;
             if (coutOfIteration > 0)
             {
                 toolStripProgressBar1.Maximum = coutOfIteration;
                 toolStripProgressBar1.Value = 0;
                 TreeNode iterationTree = new TreeNode("Итерации");
-                int[,] mass = new int[coutOfConteyner, 2];
-                int notIncludedCont = 0;
-                DateTime timeStart = DateTime.Now;
                 for (int coutIter = 0; coutIter < coutOfIteration; coutIter++)
                 {
                     toolStripProgressBar1.Value++;
@@ -385,7 +385,62 @@ namespace DiplomLeshenko
 
             if(timeOfIteration > 0)
             {
+                int secondStart = Convert.ToInt16(DateTime.Now.Second);
+                Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                toolStripProgressBar1.Maximum = timeOfIteration*60;
+                toolStripProgressBar1.Value = 0;
+                TreeNode iterationTree = new TreeNode("Итерации");
+                int colIter = 0;
+                while ((Convert.ToInt16(DateTime.Now.Second)- secondStart) < (timeOfIteration*60))
+                {
+                    toolStripProgressBar1.Value = ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - unixTimestamp);
+                    toolStripStatusLabel3.Text = ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - unixTimestamp).ToString();
+                    Random r = new Random((int)DateTime.Now.Ticks);
+                    int max = coutOfConteyner;
+                    int[] x = new int[max];
+                    for (int i = 0; i < max; i++)
+                    {
+                        bool contains;
+                        int next;
+                        do
+                        {
+                            next = r.Next(max);
+                            contains = false;
+                            for (int index = 0; index < i; index++)
+                            {
+                                int n = x[index];
+                                if (n == next)
+                                {
+                                    contains = true;
+                                    break;
+                                }
+                            }
+                        } while (contains);
+                        x[i] = next;
+                    }
+                    for (int i = 0; i < coutOfConteyner; i++)
+                    {
+                        mass[i, 0] = x[i];
+                        mass[i, 1] = r.Next(0, 1);
+                    }
+                    notIncludedCont = drawBlocks(mass);
+                    double cf = ((Convert.ToDouble(coutOfConteyner) - Convert.ToDouble(notIncludedCont)) / Convert.ToDouble(coutOfConteyner));
+                    iterationTree.Nodes.Add(new TreeNode("#" + colIter));
+                    iterationTree.Nodes[colIter].Nodes.Add(new TreeNode("ЦФ=" + cf));
+                    if (maxCF < cf)
+                    {
+                        maxCF = cf;
+                        massDouble = mass;
+                        iterIsCool = colIter;
+                    }
 
+                    //chart1.Series.Add.
+                    chart1.Series[0].Points.AddXY(colIter, cf);
+                    toolStripStatusLabel1.Text = "Итерация - " + colIter;
+                    toolStripStatusLabel2.Text = "Алгоритм работает - " + (DateTime.Now - timeStart);
+                    colIter++;
+                    await Task.Delay(1);
+                }
             }
 
             drawBlocks(massDouble);
