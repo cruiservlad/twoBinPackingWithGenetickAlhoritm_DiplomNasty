@@ -14,6 +14,7 @@ namespace DiplomLeshenko
     {
         Int16 colRows = 0;
         Int16 colCell = 3;
+        int allIteration = 0;
 
         //int[,] massiveBlocks = new int[3, 2] { {0,1,2 }, {0,1,1 }, { 2,3,4} };
 
@@ -32,6 +33,7 @@ namespace DiplomLeshenko
             pictureBox1.Width = 560;
             pictureBox1.Height = 376;
             generateStartBox();
+            //toolStripProgressBar1.Width = this.Size.Width;
         }
 
         private void generateStartBox()
@@ -75,18 +77,8 @@ namespace DiplomLeshenko
             this.changeTextInPreSetArea();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            /*tabControl1.SelectedIndex = 0;
-            Random ran = new Random();
-            for(int i = 0; i < 500; i++)
-            {
-                textBox5.Text = ran.Next(5, 50).ToString();
-                textBox3.Text = ran.Next(5, 50).ToString();
-                addBlock();
-            }
-            //Draw(50, 50);
-            drawBlocks();*/
             colRows = 0;
             label1.Text = "Количество элементов - "+colRows;
             dataGridView1.Rows.Clear();
@@ -95,44 +87,59 @@ namespace DiplomLeshenko
             {
                 generateBlocks_values[0, 0] = 500;
             }
+            else generateBlocks_values[0, 0] = Convert.ToInt32(this.textBox4.Text);
 
             if (Convert.ToInt32(this.textBox6.Text) <= 0)//если минимаьная ширина блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
                 generateBlocks_values[1, 0] = 5;
             }
+            else generateBlocks_values[1, 0] = Convert.ToInt32(this.textBox6.Text);
 
             if (Convert.ToInt32(this.textBox7.Text) <= 0)//если максимальная ширина блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
                 generateBlocks_values[2, 0] = 50;
             }
+            else generateBlocks_values[2, 0] = Convert.ToInt32(this.textBox7.Text);
 
             if (Convert.ToInt32(this.textBox9.Text) <= 0)//если минимаьная высота блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
                 generateBlocks_values[3, 0] = 5;
             }
+            else generateBlocks_values[3, 0] = Convert.ToInt32(this.textBox9.Text);
 
             if (Convert.ToInt32(this.textBox8.Text) <= 0)//если максимальная высота блоков в автогенерации меньше или равно 0 используем значение по дефолту
             {
                 generateBlocks_values[4, 0] = 50;
             }
+            else generateBlocks_values[4, 0] = 50;
 
             //tabControl1.SelectedIndex = 0;
             Random ran = new Random();
-            button1.Enabled = false;
-            button2.Enabled = false;
-            textBox3.Enabled = false;
-            textBox5.Enabled = false;
+            groupBox1.Enabled = false;
+            groupBox4.Enabled = false;
+
+            textBox4.Text = generateBlocks_values[0, 0].ToString();
+            textBox6.Text = generateBlocks_values[1, 0].ToString();
+            textBox7.Text = generateBlocks_values[2, 0].ToString();
+            textBox9.Text = generateBlocks_values[3, 0].ToString();
+            textBox8.Text = generateBlocks_values[4, 0].ToString();
+
+            toolStripProgressBar1.Maximum = generateBlocks_values[0, 0];
+            toolStripProgressBar1.Value = 0;
+            //MethodInvoker simpleDelegate = new MethodInvoker(addBlock);
             for (int i = 0; i < generateBlocks_values[0, 0]; i++)
             {
+                toolStripProgressBar1.Value++;
                 textBox5.Text = ran.Next(generateBlocks_values[3, 0], generateBlocks_values[4, 0]).ToString();
                 textBox3.Text = ran.Next(generateBlocks_values[1, 0], generateBlocks_values[2, 0]).ToString();
                 //System.Threading.Thread.Sleep(10);
                 addBlock();
+                //simpleDelegate.BeginInvoke(null, null);
+                await Task.Delay(1);
             }
-            button1.Enabled = true;
-            button2.Enabled = true;
-            textBox3.Enabled = true;
-            textBox5.Enabled = true;
+            toolStripProgressBar1.Value = 0;
+            groupBox4.Enabled = true;
+            groupBox1.Enabled = true;
             //drawBlocks();
 
 
@@ -144,32 +151,31 @@ namespace DiplomLeshenko
             //MessageBox.Show("Draw");
             /*Bitmap bmp;
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);*/
-            Random ran = new Random();
+            Random ran = new Random((int)DateTime.Now.Ticks);
+
             pictureBox1.Image = bmp;
             Graphics g = Graphics.FromImage(pictureBox1.Image);
             Rectangle rect = new Rectangle(x, y, width, height);
             g.DrawRectangle(new Pen(Color.Black, 2), rect);
             Brush[] b = new[] { Color.AliceBlue, Color.AntiqueWhite, Color.Aqua, Color.Aquamarine, Color.Azure, Color.Beige, Color.Bisque, Color.BlanchedAlmond, Color.Blue, Color.BlueViolet, Color.Brown, Color.BurlyWood, Color.CadetBlue, Color.Chartreuse, Color.Chocolate, Color.Coral, Color.CornflowerBlue, Color.Cornsilk,Color.Crimson,Color.Cyan,
-            Color.DarkBlue,Color.DarkCyan}.Select(c => new SolidBrush(c)).ToArray();//21
+            Color.DarkBlue,Color.DarkCyan,Color.DarkGoldenrod,Color.DarkGray,Color.DarkGreen,Color.DarkKhaki,Color.DarkMagenta,Color.DarkOliveGreen,Color.DarkOrange}.Select(c => new SolidBrush(c)).ToArray();//21
             //b[1] = Color.FromArgb(255,255,255,255);
 
-            DateTime localDate2 = DateTime.Now;
-            /*while ((localDate2.Second - localDate.Second) < 1)
-            {
-                localDate2 = DateTime.Now;
-            }*/
-            //MessageBox.Show("After timer");
-            System.Console.WriteLine("After timer");
+            
             g.FillRectangle(b[ran.Next(0, b.Length)], new Rectangle(x, y, width, height));
             //System.Threading.Thread.Sleep(10);
-            //MessageBox.Show(b.Length.ToString());
             //g.FillRectangle(Brushes.YellowGreen, new Rectangle(x, y, width, height));
             //g.FillRectangle();
             //Thread.Sleep(1);
+            /*DateTime localDate2 = DateTime.Now;
+            while ((localDate2.Second - localDate.Second) < 1)
+            {
+                localDate2 = DateTime.Now;
+            }*/
 
 
 
-            
+
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
@@ -323,31 +329,104 @@ namespace DiplomLeshenko
             this.genetickAlhorihm();
         }
 
-        private void genetickAlhorihm()
+        private async void genetickAlhorihm()
         {
-            int[,] mass = new int[500,2];
-            Random ran = new Random();
-            for (int i = 0; i <500; i++)
+            //int[,] mass = new int[dataGridView1.RowCount - 1,2];
+            
+            /*for (int i = 0; i < (dataGridView1.RowCount -1); i++)
             {
                 mass[i, 0] = i;
+                System.Console.WriteLine(i.ToString());
                 mass[i, 1] = ran.Next(0, 1);
             }
-            drawBlocks(mass);
+            drawBlocks(mass);*/
+
+            int coutOfIteration = Convert.ToInt16(textBox10.Text);
+            int timeOfIteration = Convert.ToInt16(textBox11.Text);
+            int coutOfConteyner = dataGridView1.RowCount - 1;
+            int[,] massDouble = new int[coutOfConteyner, 2];
+            int iterIsCool = 0;
+            if (coutOfIteration > 0)
+            {
+                toolStripProgressBar1.Maximum = coutOfIteration;
+                toolStripProgressBar1.Value = 0;
+                TreeNode iterationTree = new TreeNode("Итерации");
+                double maxCF = 0;
+                int[,] mass = new int[coutOfConteyner, 2];
+                int notIncludedCont = 0;
+                for (int coutIter = 0; coutIter < coutOfIteration; coutIter++)
+                {
+                    toolStripProgressBar1.Value++;
+                    Random r = new Random((int)DateTime.Now.Ticks);
+                    int max = coutOfConteyner;
+                    int[] x = new int[max];
+                    for (int i = 0; i < max; i++)
+                    {
+                        bool contains;
+                        int next;
+                        do
+                        {
+                            next = r.Next(max);
+                                contains = false;
+                                for (int index = 0; index < i; index++)
+                                {
+                                    int n = x[index];
+                                    if (n == next)
+                                    {
+                                        contains = true;
+                                        break;
+                                    }
+                                }
+                        } while (contains);
+                        x[i] = next;
+                    }
+                    for (int i = 0; i < coutOfConteyner; i++)
+                    {
+                            mass[i, 0] = x[i];
+                            mass[i, 1] = r.Next(0, 1);
+                    }
+                        notIncludedCont = drawBlocks(mass);
+                        double cf = ((Convert.ToDouble(coutOfConteyner) - Convert.ToDouble(notIncludedCont)) / Convert.ToDouble(coutOfConteyner));
+                        iterationTree.Nodes.Add(new TreeNode("#" + coutIter));
+                        iterationTree.Nodes[coutIter].Nodes.Add(new TreeNode("ЦФ=" + cf));
+                    if (maxCF < cf)
+                    {
+                            maxCF = cf;
+                            massDouble = mass;
+                            iterIsCool = coutIter;
+                    }
+                    
+                    await Task.Delay(1);
+                    
+                }
+                    treeView1.Nodes.Add(iterationTree);
+                }
+
+            if(timeOfIteration > 0)
+            {
+
+            }
+
+            drawBlocks(massDouble);
+            MessageBox.Show("Лучшая итерация - "+iterIsCool);
+            toolStripProgressBar1.Value = 0;
         }
 
-        private void drawBlocks(int[,] mass)
-        {
-            /*
-             * colRows - кол-во элементов        
-            */
+            private int drawBlocks(int[,] mass)
+            {
+                /*
+                 * colRows - кол-во элементов        
+                */
+                int notInclude = 0;
             Bitmap bmp;
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
 
             int maxWidth = 0;//максимальная ширина блока в столбце
             int summWidth = 0;//общая занятая ширина в контейнере
             int summHeight = 0;//общая занятая длина в столбце
             //int[,] mass = new int[500, 2];//входной массив элементов
-            Random ran = new Random();
+            Random ran = new Random((int)DateTime.Now.Ticks);
             /*for (int i = 0; i < mass.Length; i++)
             {
                 mass[i, 0] = i;
@@ -358,7 +437,6 @@ namespace DiplomLeshenko
             int posOrientationH = 1; //если 0 - то так как есть, если 1 - то ширина = длина, длина = ширина(ракеровка)
 
             int x = 0, y = 0;
-
             for (int i = 0; i < colRows; i++)
             {
                 //System.Threading.Thread.Sleep(10);
@@ -384,12 +462,14 @@ namespace DiplomLeshenko
                 if ((x + Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value)) > pictureBox1.Size.Width)
                 {
                     //MessageBox.Show("Элемент -"+mass[i,0]+" не помещается в ширину формы");
+                    notInclude++;
                     continue;
                 }
 
                 Draw(bmp, Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value), Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value), x + 2, y + 2);
 
                 //MessageBox.Show("Отрисовали элемент - "+mass[i, 0]);
+                //System.Console.WriteLine("Отрисовали элемент - "+mass[i,0]);
 
                 if (Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value) > maxWidth) maxWidth = Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
 
@@ -398,30 +478,41 @@ namespace DiplomLeshenko
                 summHeight += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationH].Value);
                 summWidth += Convert.ToInt16(dataGridView1.Rows[mass[i, 0]].Cells[posOrientationW].Value);
             }
+            return notInclude;
         }
 
         private void светлячкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*DateTime localDate = DateTime.Now;
-            MessageBox.Show(localDate.Second.ToString());*/
-            for (int i = 0; i < 100; i++)
+            //MethodInvoker simpleDelegate = new MethodInvoker(genetickAlhorihm);
+            /*for (int i = 0; i < 100; i++)
             {
-                //DateTime localDate = DateTime.Now;
                 genetickAlhorihm();
+                //simpleDelegate.BeginInvoke(null, null);
+            }*/
+            genetickAlhorihm();
+        }
 
-                //System.Threading.Thread.Sleep(10);
-                /*var item = new NotifyIcon();
-                item.Visible = true;
-                item.Icon = System.Drawing.SystemIcons.Information;
-                item.ShowBalloonTip(10, "Генерация отображения", "Операция - "+i, ToolTipIcon.Info);*/
-                MessageBox.Show("После отвисания");
-                /*DateTime localDate2 = DateTime.Now;
-                while ((localDate2.Second- localDate.Second) < 5)
-                {
-                    localDate2 = DateTime.Now;
-                }*/
+        private void textBox10_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
             }
-            //genetickAlhorihm();
+            textBox11.Text = "0";
+        }
+
+        private void textBox11_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+            textBox10.Text = "0";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -82,6 +82,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -95,6 +97,7 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -129,7 +132,7 @@
             this.светлToolStripMenuItem,
             this.мутToolStripMenuItem});
             this.алгоритмыToolStripMenuItem.Name = "алгоритмыToolStripMenuItem";
-            this.алгоритмыToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.алгоритмыToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.алгоритмыToolStripMenuItem.Text = "Алгоритмы";
             // 
             // светлToolStripMenuItem
@@ -143,7 +146,7 @@
             // светлячкиToolStripMenuItem
             // 
             this.светлячкиToolStripMenuItem.Name = "светлячкиToolStripMenuItem";
-            this.светлячкиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.светлячкиToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.светлячкиToolStripMenuItem.Text = "Светлячки";
             this.светлячкиToolStripMenuItem.Click += new System.EventHandler(this.светлячкиToolStripMenuItem_Click);
             // 
@@ -159,7 +162,7 @@
             this.окнаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem});
             this.окнаToolStripMenuItem.Name = "окнаToolStripMenuItem";
-            this.окнаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.окнаToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.окнаToolStripMenuItem.Text = "Окна";
             // 
             // рстянутьОкноОтображениеПоРазмеруДоступнойОластиToolStripMenuItem
@@ -180,7 +183,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1019, 509);
+            this.tabControl1.Size = new System.Drawing.Size(1019, 503);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -189,7 +192,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1011, 483);
+            this.tabPage1.Size = new System.Drawing.Size(1011, 477);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Работа алгоритма";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -217,7 +220,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1011, 483);
+            this.tabPage2.Size = new System.Drawing.Size(1011, 477);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Настройка алгоритма";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -226,7 +229,7 @@
             // 
             this.groupBox7.Location = new System.Drawing.Point(332, 283);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(673, 194);
+            this.groupBox7.Size = new System.Drawing.Size(673, 181);
             this.groupBox7.TabIndex = 7;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Настройка операторов";
@@ -271,6 +274,7 @@
             this.textBox11.Size = new System.Drawing.Size(85, 20);
             this.textBox11.TabIndex = 3;
             this.textBox11.Text = "0";
+            this.textBox11.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox11_KeyPress);
             // 
             // label15
             // 
@@ -288,6 +292,7 @@
             this.textBox10.Size = new System.Drawing.Size(100, 20);
             this.textBox10.TabIndex = 1;
             this.textBox10.Text = "0";
+            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox10_KeyPress);
             // 
             // label14
             // 
@@ -629,7 +634,7 @@
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(320, 471);
+            this.dataGridView1.Size = new System.Drawing.Size(320, 458);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
@@ -639,7 +644,7 @@
             this.tabPage3.Controls.Add(this.treeView1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1011, 483);
+            this.tabPage3.Size = new System.Drawing.Size(1011, 477);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Дерево решений";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -651,14 +656,30 @@
             this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(1011, 483);
+            this.treeView1.Size = new System.Drawing.Size(1011, 477);
             this.treeView1.TabIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 533);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1043, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 548);
+            this.ClientSize = new System.Drawing.Size(1043, 555);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -686,6 +707,8 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -747,6 +770,8 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
     }
 }
 
