@@ -29,6 +29,8 @@ namespace DiplomLeshenko
             pictureBox1.Width = 560;
             pictureBox1.Height = 376;
             generateStartBox();
+            tabControl1.TabPages.Remove(tabPage5);
+            tabControl1.TabPages.Remove(tabPage6);
         }
 
         private void generateStartBox()
@@ -541,6 +543,37 @@ namespace DiplomLeshenko
         private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void сохранитьВходныеПараметрыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Add(tabPage5);
+            tabControl1.SelectedTab = tabPage5;
+        }
+
+        private void загрузитьВходныеПараметрыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Add(tabPage6);
+            tabControl1.SelectedTab = tabPage6;
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(tabControl1.SelectedTab != tabPage6 && tabControl1.SelectedTab != tabPage5)
+            {
+                tabControl1.TabPages.Remove(tabPage5);
+                tabControl1.TabPages.Remove(tabPage6);
+                сохранитьВходныеПараметрыToolStripMenuItem.Enabled = true;
+                загрузитьВходныеПараметрыToolStripMenuItem.Enabled = true;
+            }
+            if(tabControl1.SelectedTab == tabPage6)
+            {
+                загрузитьВходныеПараметрыToolStripMenuItem.Enabled = false;
+            }
+            if (tabControl1.SelectedTab == tabPage5)
+            {
+                сохранитьВходныеПараметрыToolStripMenuItem.Enabled = false;
+            }
         }
     }
 }
