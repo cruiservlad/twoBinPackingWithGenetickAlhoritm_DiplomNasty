@@ -6,3 +6,4 @@ C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshen
 C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\DiplomLeshenko.csproj.GenerateResource.Cache
 C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\ВКР - Лещенко А.Ю.exe
 C:\Users\pisar\Documents\Visual Studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\ВКР - Лещенко А.Ю.pdb
+C:\Users\pisar\documents\visual studio 2015\Projects\DiplomLeshenko\DiplomLeshenko\obj\Release\DiplomLeshenko.csprojResolveAssemblyReference.cache
