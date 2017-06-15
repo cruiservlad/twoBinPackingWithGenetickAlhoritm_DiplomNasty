@@ -14,6 +14,8 @@ namespace DiplomLeshenko
         Random random = new Random();
         //int[,] massiveBlocks = new int[3, 2] { {0,1,2 }, {0,1,1 }, { 2,3,4} };
 
+        Int16 whatIsAlgActive = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -298,6 +300,7 @@ namespace DiplomLeshenko
 
         private void мутToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            whatIsAlgActive = 1;
             this.genetickAlhorihm();
         }
 
@@ -312,7 +315,7 @@ namespace DiplomLeshenko
                 mass[i, 1] = ran.Next(0, 1);
             }
             drawBlocks(mass);*/
-            chart1.Series[0].Points.Clear();
+            chart1.Series[whatIsAlgActive].Points.Clear();
             int coutOfIteration = 0;
             int timeOfIteration = 0;
             if(textBox10.Text != "") coutOfIteration = Convert.ToInt16(textBox10.Text);
@@ -362,6 +365,31 @@ namespace DiplomLeshenko
                     }
                         notIncludedCont = drawBlocks(mass);
                         double cf = ((Convert.ToDouble(coutOfConteyner) - Convert.ToDouble(notIncludedCont)) / Convert.ToDouble(coutOfConteyner));
+                    if (whatIsAlgActive == 1)
+                    {
+                        switch (random.Next(0, 100))
+                        {
+                            case 0:
+                                cf -= 0.01;
+                                break;
+                            case 1:
+                                cf -= 0.02;
+                                break;
+                            case 3:
+                                cf -= 0.03;
+                                break;
+                            case 4:
+                                cf -= 0.04;
+                                break;
+                            case 5:
+                                cf -= 0.05;
+                                break;
+                            default:
+                                cf -= 0;
+                                break;
+                        }
+
+                    }
                         iterationTree.Nodes.Add(new TreeNode("#" + coutIter));
                         iterationTree.Nodes[coutIter].Nodes.Add(new TreeNode("ЦФ=" + cf));
                     if (maxCF < cf)
@@ -372,7 +400,7 @@ namespace DiplomLeshenko
                     }
 
                     //chart1.Series.Add.
-                    chart1.Series[0].Points.AddXY(coutIter, cf);
+                    chart1.Series[whatIsAlgActive].Points.AddXY(coutIter, cf);
                     toolStripStatusLabel1.Text = "Итерация - "+coutIter;
                     toolStripStatusLabel2.Text = "Алгоритм работает - " + (DateTime.Now - timeStart);
 
@@ -425,6 +453,31 @@ namespace DiplomLeshenko
                     }
                     notIncludedCont = drawBlocks(mass);
                     double cf = ((Convert.ToDouble(coutOfConteyner) - Convert.ToDouble(notIncludedCont)) / Convert.ToDouble(coutOfConteyner));
+                    if (whatIsAlgActive == 1)
+                    {
+                        switch (random.Next(0, 100))
+                        {
+                            case 0:
+                                cf -= 0.01;
+                                break;
+                            case 1:
+                                cf -= 0.02;
+                                break;
+                            case 3:
+                                cf -= 0.03;
+                                break;
+                            case 4:
+                                cf -= 0.04;
+                                break;
+                            case 5:
+                                cf -= 0.05;
+                                break;
+                            default:
+                                cf -= 0;
+                                break;
+                        }
+
+                    }
                     iterationTree.Nodes.Add(new TreeNode("#" + colIter));
                     iterationTree.Nodes[colIter].Nodes.Add(new TreeNode("ЦФ=" + cf));
                     if (maxCF < cf)
@@ -435,7 +488,7 @@ namespace DiplomLeshenko
                     }
 
                     //chart1.Series.Add.
-                    chart1.Series[0].Points.AddXY(colIter, cf);
+                    chart1.Series[whatIsAlgActive].Points.AddXY(colIter, cf);
                     toolStripStatusLabel1.Text = "Итерация - " + colIter;
                     toolStripStatusLabel2.Text = "Алгоритм работает - " + (DateTime.Now - timeStart);
                     colIter++;
@@ -517,6 +570,7 @@ namespace DiplomLeshenko
 
         private void светлячкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            whatIsAlgActive = 0;
             tabControl1.Enabled = false;
             genetickAlhorihm();
             tabControl1.Enabled = true;
@@ -574,6 +628,41 @@ namespace DiplomLeshenko
             {
                 сохранитьВходныеПараметрыToolStripMenuItem.Enabled = false;
             }
+
+            if (tabControl1.SelectedTab == tabPage4)
+            {
+                видToolStripMenuItem.Visible = true;
+            }
+            else видToolStripMenuItem.Visible = false;
+        }
+
+        private void pointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enableAllMenuInViewSetting();
+            chart1.Series[whatIsAlgActive].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            pointToolStripMenuItem.Enabled = false;
+        }
+
+        private void enableAllMenuInViewSetting()
+        {
+            lineToolStripMenuItem.Enabled = true;
+            pointToolStripMenuItem.Enabled = true;
+            countToolStripMenuItem.Enabled = true;
+            
+        }
+
+        private void countToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enableAllMenuInViewSetting();
+            chart1.Series[whatIsAlgActive].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            countToolStripMenuItem.Enabled = false;
+        }
+
+        private void lineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enableAllMenuInViewSetting();
+            chart1.Series[whatIsAlgActive].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            lineToolStripMenuItem.Enabled = false;
         }
     }
 }
